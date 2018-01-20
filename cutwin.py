@@ -20,23 +20,22 @@ Example:
 def parse_user_args():
     parser = argparse.ArgumentParser(description=DESCRIPTION,
                                      formatter_class=argparse.RawTextHelpFormatter)
-    parser.add_argument("-d", "--delimiter", dest="delimiter", required=True 
+    parser.add_argument("-d", "--delimiter", dest="delimiter", required=True,
                         action="store", help="delimiter")
-    parser.add_argument("-f","--fieldnum", dest="fieldnum", required=True
+    parser.add_argument("-f","--fieldnum", dest="fieldnum", required=True,
                         action="store", help="field number")
     args = parser.parse_args()
-    delimit=parser.delimiter
-    field_number=parser.field_number
-    return (delimit, field_number)    
+    delimiter = args.delimiter
+    fieldnum  = args.fieldnum
+    return (delimiter, fieldnum)
 
-           
 if __name__ == "__main__":
     
     # Parser user-provided arguments
     delimiter, fieldnum = parse_user_args()
 
     # Take user input via pipe, or directly from stdin
-    piped_input = sys.stdin.read().strip()
+    piped_input = sys.stdin.read().rstrip()
     
     # Convert fieldnum to number
     try:
@@ -50,10 +49,11 @@ if __name__ == "__main__":
 
     # Get the relevant field
     for line in piped_input.split("\n"):
-        line_stripped = line.strip()
+        line_stripped = line.rstrip()
         if line_stripped:
-            field_values = line_stripped(delimiter)
-        if len(field_values) < fieldnum:
-            print ""
-        else:
-            print field_values[fieldnum-1]
+            field_values = line_stripped.split(delimiter)
+            if len(field_values) < fieldnum:
+                print ""
+            else:
+                print field_values[fieldnum-1]
+
