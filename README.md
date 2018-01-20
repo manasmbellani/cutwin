@@ -8,9 +8,11 @@ are implemented:
 ## Example:
 
 * Prepare input
+    
     echo "how? are you? going" >>test.txt
         
 * Pipe the contents of the text file to the file to execute:
+    
     type test.txt | cut.exe -d"?" f2
 
 ## Optional Arguments:
