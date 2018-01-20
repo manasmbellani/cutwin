@@ -5,14 +5,16 @@ are implemented:
     -d              delimiter
     -f              field number to get
 
-##Example:
+## Example:
+
     * Prepare input
         echo "how? are you? going" >>test.txt
         
     * Pipe the contents of the text file to the file to execute:
         type test.txt | cut.exe -d"?" f2
 
-##Optional Arguments:
+## Optional Arguments:
+
   -h, --help            show this help message and exit
   -d DELIMITER, --delimiter DELIMITER
                         delimiter
